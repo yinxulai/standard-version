@@ -233,7 +233,7 @@ describe('cli', function () {
       content.should.not.match(/legacy header format/)
     })
 
-    it('allows for a custom changelog header', function () {
+    it('[DEPRECATED] (--changelogHeader) allows for a custom changelog header', function () {
       fs.writeFileSync('CHANGELOG.md', '', 'utf-8')
       commit('feat: first commit')
       execCli('--changelogHeader="# Pork Chop Log"').code.should.equal(0)
@@ -241,7 +241,7 @@ describe('cli', function () {
       content.should.match(/# Pork Chop Log/)
     })
 
-    it('exits with error if changelog header matches last version search regex', function () {
+    it('[DEPRECATED] (--changelogHeader) exits with error if changelog header matches last version search regex', function () {
       fs.writeFileSync('CHANGELOG.md', '', 'utf-8')
       commit('feat: first commit')
       execCli('--changelogHeader="## 3.0.2"').code.should.equal(1)
@@ -1086,6 +1086,14 @@ describe('standard-version', function () {
       commit('feat: another commit addresses issue #1')
       execCli('--releaseCommitMessageFormat="{{currentTag}} is the version."')
       shell.exec('git log --oneline -n1').should.include('1.1.0 is the version.')
+    })
+
+    it('--header', function () {
+      fs.writeFileSync('CHANGELOG.md', '', 'utf-8')
+      commit('feat: first commit')
+      execCli('--header="# Welcome to our CHANGELOG.md"').code.should.equal(0)
+      let content = fs.readFileSync('CHANGELOG.md', 'utf-8')
+      content.should.match(/# Welcome to our CHANGELOG.md/)
     })
 
     it('[LEGACY] supports --message (and single %s replacement)', function () {

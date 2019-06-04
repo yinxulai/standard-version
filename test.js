@@ -330,7 +330,7 @@ describe('cli', function () {
         fs.writeFileSync('CHANGELOG.md', 'legacy header format<a name="1.0.0">\n', 'utf-8')
 
         commit('feat: first commit')
-        let result = execCli('--patch')
+        let result = execCli()
         result.code.should.equal(0)
         result.stderr.should.match(/prerelease ran/)
       })
@@ -347,7 +347,7 @@ describe('cli', function () {
         fs.writeFileSync('CHANGELOG.md', 'legacy header format<a name="1.0.0">\n', 'utf-8')
 
         commit('feat: first commit')
-        let result = execCli('--patch')
+        let result = execCli()
         result.code.should.equal(1)
         result.stderr.should.match(/prerelease ran/)
       })
@@ -366,7 +366,7 @@ describe('cli', function () {
         fs.writeFileSync('CHANGELOG.md', 'legacy header format<a name="1.0.0">\n', 'utf-8')
 
         commit('feat: first commit')
-        let result = execCli('--patch')
+        let result = execCli()
         result.stdout.should.match(/9\.9\.9/)
         result.code.should.equal(0)
       })
@@ -385,7 +385,7 @@ describe('cli', function () {
         fs.writeFileSync('CHANGELOG.md', 'legacy header format<a name="1.0.0">\n', 'utf-8')
 
         commit('feat: first commit')
-        let result = execCli('--patch')
+        let result = execCli()
         result.code.should.equal(0)
         result.stderr.should.match(/postbump ran/)
       })
@@ -402,7 +402,7 @@ describe('cli', function () {
         fs.writeFileSync('CHANGELOG.md', 'legacy header format<a name="1.0.0">\n', 'utf-8')
 
         commit('feat: first commit')
-        let result = execCli('--patch')
+        let result = execCli()
         result.code.should.equal(1)
         result.stderr.should.match(/postbump-failure/)
       })
@@ -421,7 +421,7 @@ describe('cli', function () {
         fs.writeFileSync('CHANGELOG.md', 'legacy header format<a name="1.0.0">\n', 'utf-8')
 
         commit('feat: first commit')
-        let result = execCli('--patch')
+        let result = execCli()
         result.code.should.equal(0)
         result.stderr.should.match(/precommit ran/)
       })
@@ -438,7 +438,7 @@ describe('cli', function () {
         fs.writeFileSync('CHANGELOG.md', 'legacy header format<a name="1.0.0">\n', 'utf-8')
 
         commit('feat: first commit')
-        let result = execCli('--patch')
+        let result = execCli()
         result.code.should.equal(1)
         result.stderr.should.match(/precommit-failure/)
       })
@@ -455,7 +455,7 @@ describe('cli', function () {
         fs.writeFileSync('CHANGELOG.md', 'legacy header format<a name="1.0.0">\n', 'utf-8')
 
         commit('feat: first commit')
-        let result = execCli('--patch')
+        let result = execCli()
         result.code.should.equal(0)
         shell.exec('git log --oneline -n1').should.match(/delivers #222/)
       })
